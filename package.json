@@ -1,16 +1,19 @@
 {
   "name": "rematch",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "easyredux",
+  "main": "dist",
+  "keywords": ["redux", "easy redux"],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "tsc"
   },
-  "author": "",
+  "author": "lee",
   "license": "ISC",
   "dependencies": {
     "redux": "^4.0.4"
   },
+  "files": ["/dist"],
   "devDependencies": {
     "@types/jest": "^24.0.19",
     "@types/node": "^12.11.1",
