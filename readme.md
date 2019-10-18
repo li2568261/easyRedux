@@ -36,7 +36,7 @@ const module = {
             });
         },
         mockB: async (payload, state, dispatch, store) => {
-          	// 根据路径修改子木块，b变量。
+          	// 根据路径修改子模块，b变量。
             return Promise.resolve(8).then(dispatch.ModuleA.b);
         },
       	mockB: async function(payload, state, dispatch, store) {
@@ -59,4 +59,8 @@ store.dispatch.module.(...subModule).[stateName|reducer|effects]
 inject(modulepath, module)
 // 模块销毁
 destory(modulepath)
+
+// 当在业务场景需要了解异步的effect是否执行完毕我们可以
+await store.dispatch.(...submodule).effectName();
+// ... donext
 ```
