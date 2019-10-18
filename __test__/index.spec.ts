@@ -1,6 +1,6 @@
 import easyRedux from "../src";
-import { testData, resultState } from "./testData";
-const { store } = easyRedux(testData);
+import { testData, resultState, injectModule } from "./testData";
+const { store, inject, distory } = easyRedux(testData);
 
 describe("main test...", () => {
     test("init test", () => {
@@ -38,6 +38,18 @@ describe("main test...", () => {
         await store.dispatch.ModuleB.mockB("k")
         state = store.getState();
         await expect(state.ModuleB.b).toEqual("k");
+    })
+
+    test("inject test...", ()=>{
+        inject("ModuleB", "ij" ,injectModule)
+        let state = store.getState();
+        expect(state.ModuleB.ij).toEqual(injectModule.state);
+    })
+
+    test("distory test...", ()=>{
+        distory("ModuleB/ij")
+        let state = store.getState();
+        expect(state.ModuleB.ij).toEqual(undefined);
     })
 })
 

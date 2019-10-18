@@ -1,0 +1,1 @@
+export const refreshStateType = (Math.random() * 10).toString(16);

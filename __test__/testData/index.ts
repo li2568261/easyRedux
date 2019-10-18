@@ -32,8 +32,7 @@ export const ModuleC: IModules = {
     },
     effects: {
         mockA: async (payload, state, dispatch, store) => {
-            return Promise.resolve(payload).then((payload)=>{
-                console.log("payload", payload);
+            return Promise.resolve(payload).then((payload) => {
                 dispatch.ModuleA.ModuleC.a(payload)
             });
         },
@@ -50,7 +49,7 @@ export const ModuleA: IModules = {
     },
     effects: {
         mockA: async (payload, state, dispatch, store) => {
-            return Promise.resolve(payload).then(data=>{
+            return Promise.resolve(payload).then(data => {
                 dispatch.ModuleA.a(payload)
                 return "lee";
             });
@@ -74,7 +73,7 @@ const ModuleB: IModules = {
         mockA: async (payload, state, dispatch, store) => {
             return Promise.resolve(1).then(dispatch.ModuleB.a);
         },
-        mockB: async function(payload, state, dispatch, store) {
+        mockB: async function (payload, state, dispatch, store) {
             return Promise.resolve(payload).then(this.b)
         }
     }
@@ -86,5 +85,14 @@ export const testData = {
     modules: {
         ModuleA,
         ModuleB
+    }
+}
+
+export const injectModule = {
+    state: {
+        x: 1
+    },
+    effects: {
+        iMock: async () => { }
     }
 }
