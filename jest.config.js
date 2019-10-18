@@ -1,5 +1,5 @@
 
-const  all = '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$'
+// const  all = '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$'
 module.exports = {
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
