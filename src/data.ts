@@ -1,29 +1,21 @@
 import { IAnyKey } from "../typings";
 import { isObject, isUndefined } from "util";
+import { objFindValueByPath } from "./utils";
 
-
-const findStateParent = (data: IAnyKey, pathArr: string[])=>{
-
-}
 export const updateState = (data: IAnyKey, pathArr: string[], replaceState?: any) => {
     
     const rootState = { ...data }
-    let currentState = rootState;
-    for (let i = 0; i < pathArr.length - 1; i++) {
-        if( isUndefined(currentState[pathArr[i]!]) ) return null;
-        currentState[pathArr[i]!] = { ...currentState[pathArr[i]!] };
-        currentState = currentState[pathArr[i]!];
-    }
-    
+    let currentState = objFindValueByPath(rootState, pathArr.slice(0, -1));
+    const lastKey = pathArr[pathArr.length - 1];
     if(isUndefined(replaceState)){
-        delete currentState[pathArr[pathArr.length - 1]];
-    }else if(isObject(currentState[pathArr.length - 1])) {
-        currentState[pathArr[pathArr.length - 1]] = {
-            ...currentState[pathArr[pathArr.length - 1]],
+        delete currentState[lastKey];
+    }else if(isObject(currentState[lastKey])) {
+        currentState[lastKey] = {
+            ...currentState[lastKey],
             ...replaceState
         }
     } else {
-        currentState[pathArr[pathArr.length - 1]] = replaceState;
+        currentState[lastKey] = replaceState;
     };
     return rootState;
 }

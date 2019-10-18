@@ -1,16 +1,12 @@
 import { IModules, IAnyKey } from "../typings";
-import { splitPath, throwError } from "./utils";
+import { splitPath, throwError, objFindValueByPath } from "./utils";
 import { updateState } from "./data";
 
 export const findModule = (parentModule: IModules, pathArr: string[]): (IModules | null) => {
-
-    if (pathArr.length === 0) return parentModule;
-    if (!pathArr[0]) return findModule(parentModule, pathArr.slice(1));
-    if (!parentModule.modules || !parentModule.modules[pathArr[0]!]) {
-        return null;
-    }
-    if (pathArr.length === 1) return parentModule.modules![pathArr[0]!]
-    return findModule(parentModule.modules![pathArr[0]!], pathArr.slice(1));
+    
+    return objFindValueByPath(parentModule, pathArr, (val,key)=>{
+        return val.modules && val.modules[key] ? val.modules[key] : null
+    })
 }
 
 export const collectModuleState = (module: IModules) => {
@@ -42,7 +38,6 @@ export const distoryModule = (path: string, rootModule: IModules, state: IAnyKey
     const deleteModuleName = pathArr.pop();
     const perentModule = findModule(rootModule, pathArr);
     
-    // if (perentModule === rootModule) return throwError("can't distory root module");
     if (!perentModule) return throwError(`can't find parent module that ${path}`);
     if (!perentModule.modules || !perentModule.modules[deleteModuleName!]) return throwError(`${path} module has't ${deleteModuleName} module`);
     delete perentModule.modules[deleteModuleName!];

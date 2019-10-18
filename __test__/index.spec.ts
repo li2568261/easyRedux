@@ -22,7 +22,7 @@ describe("main test...", () => {
         store.dispatch.ModuleA.ModuleC.MCReducer(setData);
         state = store.getState();
         expect(state.ModuleA.ModuleC).toEqual({
-            ...beforeModuleC.equel,
+            ...beforeModuleC,
             ...setData
         })
     })
