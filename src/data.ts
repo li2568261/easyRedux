@@ -6,8 +6,8 @@ export const updateState = (data: IAnyKey, pathArr: string[], replaceState?: any
     pathArr = [...pathArr];
     const lastKey = pathArr.pop();
     // let currentState = objFindValueByPath(rootState, pathArr);
-    if(!lastKey){
-        if(isObject(replaceState)) return { 
+    if (!lastKey) {
+        if (isObject(replaceState)) return {
             ...data,
             ...replaceState
         }
@@ -16,14 +16,14 @@ export const updateState = (data: IAnyKey, pathArr: string[], replaceState?: any
 
     const rootState = { ...data };
     let currentState = rootState;
-    for(let i = 0; i < pathArr.length; i++){
+    for (let i = 0; i < pathArr.length; i++) {
         let key = pathArr[i];
-        if(!isObject(currentState[key]))return null;
-        currentState = currentState[key];
+        if (!isObject(currentState[key])) return null;
+        currentState = { ...currentState[key] };
     }
-    if(isUndefined(replaceState)){
+    if (isUndefined(replaceState)) {
         delete currentState[lastKey];
-    }else if(isObject(currentState[lastKey])) {
+    } else if (isObject(currentState[lastKey])) {
         currentState[lastKey] = {
             ...currentState[lastKey],
             ...replaceState
