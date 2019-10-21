@@ -56,6 +56,6 @@ export interface IEasyReduxApi {
     inject: (path: string, name: string, mod: IModules)=>boolean
     distory: (path: string)=>boolean
 }
-export interface  IEasyRedux {
+export default interface  IEasyRedux {
     (modules: IModules): IEasyReduxApi
 }
