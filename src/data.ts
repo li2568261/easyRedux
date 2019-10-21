@@ -4,15 +4,22 @@ import { objFindValueByPath, throwError } from "./utils";
 
 export const updateState = (data: IAnyKey, pathArr: string[], replaceState?: any) => {
     pathArr = [...pathArr];
-    const rootState = { ...data }
     const lastKey = pathArr.pop();
-    let currentState = objFindValueByPath(rootState, pathArr);
+    // let currentState = objFindValueByPath(rootState, pathArr);
     if(!lastKey){
         if(isObject(replaceState)) return { 
-            ...rootState,
+            ...data,
             ...replaceState
         }
         return throwError("root state must be a Object");
+    }
+
+    const rootState = { ...data };
+    let currentState = rootState;
+    for(let i = 0; i < pathArr.length; i++){
+        let key = pathArr[i];
+        if(!isObject(currentState[key]))return null;
+        currentState = currentState[key];
     }
     if(isUndefined(replaceState)){
         delete currentState[lastKey];
