@@ -1,13 +1,19 @@
+#easyRedux(beta-1.0.0)
+---
+
 ## why
 
 在使用redux的过程中遇到诸如:
 * 模块化数据更新操作产生的，reducer书写繁琐，产生没必要的运行开销。
 * 异步数据流管理
-* 动态的模块数据诸如与销毁(todo)
-的问题
+* 动态的模块数据诸如与销毁的问题
 
 ## how
 
+
+
+1. npm i ee-redux
+2. 
 
 ```typescript
   import easyRedux from "easyRedux";
