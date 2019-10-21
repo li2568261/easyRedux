@@ -1,9 +1,12 @@
 {
   "name": "ee-redux",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "easyredux",
-  "main": "dist",
-  "keywords": ["redux", "easy redux"],
+  "main": "dist/index.js",
+  "keywords": [
+    "redux",
+    "easy redux"
+  ],
   "scripts": {
     "test": "jest",
     "prepublish": "tsc"
@@ -13,9 +16,14 @@
   "dependencies": {
     "redux": "^4.0.4"
   },
-  "files": ["/dist", "/types"],
+  "files": [
+    "/dist",
+    "/types"
+  ],
   "typings": "types/index.d.ts",
   "devDependencies": {
+    "@babel/parser": "^7.6.4",
+    "@babel/types": "^7.6.3",
     "@types/jest": "^24.0.19",
     "@types/node": "^12.11.1",
     "jest": "^24.9.0",
