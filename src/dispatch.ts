@@ -1,4 +1,4 @@
-import { IDeliverDispath, IAnyKeyAndCall } from "../typings";
+import { IDeliverDispath, IAnyKeyAndCall } from "./typings";
 import { Dispatch, AnyAction } from "redux";
 
 export const initRootDispath = (dispatch: Dispatch)=>{

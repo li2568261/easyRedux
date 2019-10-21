@@ -1,4 +1,4 @@
-import { IModules, IAnyKey } from "../typings";
+import { IModules, IAnyKey } from "./typings";
 import { splitPath, throwError, objFindValueByPath } from "./utils";
 import { updateState } from "./data";
 

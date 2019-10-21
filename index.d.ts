@@ -1,4 +1,4 @@
-import { Dispatch } from "redux"
+import { Dispatch, Store } from "redux"
 
 export type TStateType = {
     [key: string]: any
@@ -8,20 +8,21 @@ export type AnyAction = {
     type: string,
     payload: any
 }
-// export interface IDispatch<T = any> {
-//     (action: AnyAction): Promise<T>
-//     [key: string]: IDispatch<T>
-// }
+
 interface IAnyFuc {
     [key: string]: (...arg: any[])=>any
 }
 export interface IDeliverDispath extends Dispatch {
     (payload: any): void
-    __rootDispath: IDeliverDispath
-    __path: string
-    [key:string]: any
+    [key:string]: IDeliverDispath
 }
-export type TEffects<P = any, T = TStateType, D = IDeliverDispath, M = IModules<any>, RT = TStateType> = (this: IAnyFuc,payload: P, state: T, dispatch: D, rootState:RT) => Promise<any>
+export type TEffects<
+    P = any,
+    T = TStateType,
+    D = IDeliverDispath,
+    M = IModules<any>,
+    RT = TStateType
+> = (this: IAnyFuc,payload: P, state: T, dispatch: D, rootState:RT) => Promise<any>
 export interface IModules<stateType = TStateType> {
     namespace?: boolean
     state: stateType
@@ -41,7 +42,20 @@ export interface IPlugin {
 export interface IAnyKey{
     [key: string]: any
 }
+
 export interface IAnyKeyAndCall extends IAnyKey{
     (...arg: any[]): any
     [key: string]: any
+}
+
+export interface IEasyReduxStore extends Store {
+    dispatch: IDeliverDispath
+}
+export interface IEasyReduxApi {
+    store: IEasyReduxStore
+    inject: (path: string, name: string, mod: IModules)=>boolean
+    distory: (path: string)=>boolean
+}
+export interface  IEasyRedux {
+    (modules: IModules): IEasyReduxApi
 }

@@ -1,4 +1,4 @@
-import { IModules } from "../../typings";
+import { IModules } from "../../src/typings";
 
 export const resultState = {
     loading: false,

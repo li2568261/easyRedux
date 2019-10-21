@@ -1,4 +1,4 @@
-import { IAnyKey } from "../typings";
+import { IAnyKey } from "./typings";
 import { isObject, isUndefined } from "util";
 import { objFindValueByPath } from "./utils";
 

@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, Reducer, Middleware } from "redux";
-import { IModules, AnyAction, IPlugin, IAnyKey } from "../typings";
+import { IModules, AnyAction, IPlugin, IAnyKey } from "./typings";
 import { splitPath, throwError } from "./utils";
 import { generateProxyDispatch, initRootDispath } from "./dispatch";
 import { updateState } from "./data";
@@ -67,6 +67,7 @@ export default (entryModule: IModules, plugins?: IPlugin[]) => {
             if (!result) return throwError("inject moduel error");
             _state = result;
             refreshState();
+            return true;
         }
     }
     const inject = withStateSet(injectModule);
