@@ -7,6 +7,7 @@ export const isObject = (obj: any)=>Object.prototype.toString.call(obj) === "[ob
 export const isUndefined = (val: any)=>typeof val === 'undefined';
 
 const selectFc = (obj: any, key: string)=>{
+    if(!key)return obj
     return obj[key]
 }
 export const objFindValueByPath = (obj: any,path: string[], fc = selectFc)=>{

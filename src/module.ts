@@ -3,8 +3,9 @@ import { splitPath, throwError, objFindValueByPath } from "./utils";
 import { updateState } from "./data";
 
 export const findModule = (parentModule: IModules, pathArr: string[]): (IModules | null) => {
-    
-    return objFindValueByPath(parentModule, pathArr, (val,key)=>{
+
+    return objFindValueByPath(parentModule, pathArr, (val, key) => {
+        if (!key) return val;
         return val.modules && val.modules[key] ? val.modules[key] : null
     })
 }
@@ -28,8 +29,8 @@ export const injectModule = (path: string, name: string, module: IModules, rootM
         ...parentModule.modules,
         [name]: module
     } : {
-        [name]: module
-    }
+            [name]: module
+        }
     return updateState(state, [...pathArr, name], module.state);
 }
 
@@ -37,7 +38,7 @@ export const distoryModule = (path: string, rootModule: IModules, state: IAnyKey
     const pathArr = splitPath(path);
     const deleteModuleName = pathArr.pop();
     const perentModule = findModule(rootModule, pathArr);
-    
+
     if (!perentModule) return throwError(`can't find parent module that ${path}`);
     if (!perentModule.modules || !perentModule.modules[deleteModuleName!]) return throwError(`${path} module has't ${deleteModuleName} module`);
     delete perentModule.modules[deleteModuleName!];

@@ -52,4 +52,3 @@ describe("main test...", () => {
         expect(state.ModuleB.ij).toEqual(undefined);
     })
 })
-
