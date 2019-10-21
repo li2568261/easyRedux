@@ -1,6 +1,6 @@
 {
   "name": "ee-redux",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "easyredux",
   "main": "dist",
   "keywords": ["redux", "easy redux"],
