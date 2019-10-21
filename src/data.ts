@@ -18,8 +18,10 @@ export const updateState = (data: IAnyKey, pathArr: string[], replaceState?: any
     let currentState = rootState;
     for (let i = 0; i < pathArr.length; i++) {
         let key = pathArr[i];
+        if (!key) continue;
         if (!isObject(currentState[key])) return null;
-        currentState = { ...currentState[key] };
+        currentState[key] = { ...currentState[key] };
+        currentState = currentState[key];
     }
     if (isUndefined(replaceState)) {
         delete currentState[lastKey];

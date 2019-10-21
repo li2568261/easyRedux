@@ -64,7 +64,7 @@ export default (entryModule: IModules, plugins?: IPlugin[]) => {
     const withStateSet = (fc: any)=>{
         return (...arg: any[])=>{
             const result = fc(...arg, _modules, _state);
-            if (!result) return throwError("inject moduel error");
+            if (!result) return throwError("inject module error");
             _state = result;
             refreshState();
             return true;

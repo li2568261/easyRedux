@@ -41,6 +41,18 @@ describe("main test...", () => {
     })
 
     test("inject test...", ()=>{
+        inject("", "ij" ,injectModule)
+        let state = store.getState();
+        expect(state.ij).toEqual(injectModule.state);
+    })
+
+    test("distory test...", ()=>{
+        distory("/ij")
+        let state = store.getState();
+        expect(state.ij).toEqual(undefined);
+    })
+
+    test("inject test...", ()=>{
         inject("ModuleB", "ij" ,injectModule)
         let state = store.getState();
         expect(state.ModuleB.ij).toEqual(injectModule.state);
