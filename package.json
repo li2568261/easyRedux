@@ -8,7 +8,7 @@
     "easy redux"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "prepublish": "tsc"
   },
   "author": "lee",
